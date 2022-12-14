@@ -5,8 +5,9 @@ import './App.css';
 
 function App() {
   const [{ id, name, votes, capital }, setOpenGovVotersInfo] = useState({});
-  const address = 'DCZyhphXsRLcW84G9WmWEXtAA8DKGtVGSFZLJYty8Ajjyfa';
 
+  const defaultAddress = 'DCZyhphXsRLcW84G9WmWEXtAA8DKGtVGSFZLJYty8Ajjyfa';
+  
   async function getVotes(address) {
     const wsProvider = new WsProvider('wss://kusama-rpc.dwellir.com');
     const api = await ApiPromise.create({ provider: wsProvider });
@@ -19,8 +20,8 @@ function App() {
     let tracks = api.consts.referenda.tracks;
 
     const tracksInfo = tracks.map((trackInfo) => {
-      let id = trackInfo[0];
-      let name = trackInfo[1].name;
+      let id = trackInfo[0].toNumber();
+      let name = trackInfo[1].name.toHuman();
 
       return { id, name };
     });
@@ -45,6 +46,8 @@ function App() {
     // TODO: display results
     const results = await Promise.all(votesPromises);
 
+    console.log(results);
+
     setOpenGovVotersInfo(results);
   }
 
@@ -52,7 +55,7 @@ function App() {
 
   useEffect(() => {
     if (!id && !name && !votes && !capital) {
-      getVotes();
+      getVotes(defaultAddress);
     }
   }, []);
 
@@ -64,7 +67,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload. {name}
         </p>
         <p>You clicked {name} times</p>
-        <button onClick={() => getVotes(address)}>
+        <button onClick={() => getVotes(defaultAddress)}>
           Click me
         </button>
         <a
