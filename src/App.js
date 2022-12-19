@@ -4,10 +4,10 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [{ id, name, votes, capital }, setOpenGovVotersInfo] = useState({});
+  const [openGoveVotersInfo, setOpenGovVotersInfo] = useState([]);
 
   const defaultAddress = 'DCZyhphXsRLcW84G9WmWEXtAA8DKGtVGSFZLJYty8Ajjyfa';
-  
+
   async function getVotes(address) {
     const wsProvider = new WsProvider('wss://kusama-rpc.dwellir.com');
     const api = await ApiPromise.create({ provider: wsProvider });
@@ -54,19 +54,23 @@ function App() {
 
 
   useEffect(() => {
-    if (!id && !name && !votes && !capital) {
+    if (!openGoveVotersInfo) {
       getVotes(defaultAddress);
     }
-  }, []);
+  }, [openGoveVotersInfo]);
+
+  const listItems = openGoveVotersInfo.map(voteInfo => {
+    return <li key={voteInfo.id}>{JSON.stringify(voteInfo)}</li>;
+  });
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload. {name}
+          Edit <code>src/App.js</code> and save to reload.
         </p>
-        <p>You clicked {name} times</p>
+        <ul>{listItems}</ul>
         <button onClick={() => getVotes(defaultAddress)}>
           Click me
         </button>
