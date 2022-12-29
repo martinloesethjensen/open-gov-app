@@ -42,7 +42,6 @@ function App() {
       return { id, name, votes, capital };
     });
 
-    // TODO: display results
     const results = await Promise.all(votesPromises);
 
     console.log(results);
@@ -80,12 +79,17 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <input
-          value={inputAddress}
-          onChange={(e) => setInputAddress(e.target.value)} />
-        <button onClick={() => getVotes(defaultAddress)}>
-          Fetch results
-        </button>
+        <div>
+          A tool to get an insight into how many delegated votes and capital (in KSM) you have for each OpenGov track.
+        </div>
+        <div>
+          <input
+            value={inputAddress}
+            onChange={(e) => setInputAddress(e.target.value)} />
+          <button onClick={() => getVotes(inputAddress)}>
+            Fetch results
+          </button>
+        </div>
         <div>{listItems}</div>
       </header>
     </div>
