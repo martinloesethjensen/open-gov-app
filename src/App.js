@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   const [openGoveVotersInfo, setOpenGovVotersInfo] = useState([]);
-
   const defaultAddress = 'DCZyhphXsRLcW84G9WmWEXtAA8DKGtVGSFZLJYty8Ajjyfa';
+  const [inputAddress, setInputAddress] = useState(defaultAddress);
 
   async function getVotes(address) {
     const wsProvider = new WsProvider('wss://kusama-rpc.dwellir.com');
@@ -60,28 +59,34 @@ function App() {
   }, [openGoveVotersInfo]);
 
   const listItems = openGoveVotersInfo.map(voteInfo => {
-    return <li key={voteInfo.id}>{JSON.stringify(voteInfo)}</li>;
+    return <div key={voteInfo.id}>
+      ------------------------
+      <div>
+        Track id: {voteInfo.id}
+      </div>
+      <div>
+        Track name: {voteInfo.name}
+      </div>
+      <div>
+        Track votes: {voteInfo.votes}
+      </div>
+      <div>
+        Track capital: {voteInfo.capital} KSM
+      </div>
+      ------------------------
+    </div>;
   });
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <ul>{listItems}</ul>
+        <input
+          value={inputAddress}
+          onChange={(e) => setInputAddress(e.target.value)} />
         <button onClick={() => getVotes(defaultAddress)}>
-          Click me
+          Fetch results
         </button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>{listItems}</div>
       </header>
     </div>
   );
