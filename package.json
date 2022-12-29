@@ -40,5 +40,9 @@
   "devDependencies": {
     "gh-pages": "^4.0.0"
   },
+  "keywords": [
+    "open-gov",
+    "polkadot-js"
+  ],
   "homepage": "https://martinloesethjensen.github.io/open-gov-app"
 }
