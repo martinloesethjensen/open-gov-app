@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.073c9b0a.css",
-    "main.js": "/static/js/main.a067b0bc.js",
-    "static/js/787.b801b10d.chunk.js": "/static/js/787.b801b10d.chunk.js",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/index.html",
-    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
-    "main.a067b0bc.js.map": "/static/js/main.a067b0bc.js.map",
-    "787.b801b10d.chunk.js.map": "/static/js/787.b801b10d.chunk.js.map"
+    "main.css": "/open-gov-app/static/css/main.073c9b0a.css",
+    "main.js": "/open-gov-app/static/js/main.2b8f080d.js",
+    "static/js/787.b801b10d.chunk.js": "/open-gov-app/static/js/787.b801b10d.chunk.js",
+    "index.html": "/open-gov-app/index.html",
+    "main.073c9b0a.css.map": "/open-gov-app/static/css/main.073c9b0a.css.map",
+    "main.2b8f080d.js.map": "/open-gov-app/static/js/main.2b8f080d.js.map",
+    "787.b801b10d.chunk.js.map": "/open-gov-app/static/js/787.b801b10d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.a067b0bc.js"
+    "static/js/main.2b8f080d.js"
   ]
 }
